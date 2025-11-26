@@ -1,0 +1,7 @@
+C:\Celestino Portfolio\bin\Debug\CelestinoPortfolio.dll.config
+C:\Celestino Portfolio\bin\Debug\CelestinoPortfolio.dll
+C:\Celestino Portfolio\bin\Debug\CelestinoPortfolio.pdb
+C:\Celestino Portfolio\obj\Debug\CelestinoPortfolio.csproj.AssemblyReference.cache
+C:\Celestino Portfolio\obj\Debug\CelestinoPortfolio.csproj.CoreCompileInputs.cache
+C:\Celestino Portfolio\obj\Debug\CelestinoPortfolio.dll
+C:\Celestino Portfolio\obj\Debug\CelestinoPortfolio.pdb
