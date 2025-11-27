@@ -110,15 +110,20 @@ function initMobileMenu() {
     }
 }
 
-// Form Validation
+// Form Validation and Email Sending
 function initFormValidation() {
-    const form = document.querySelector('.contact-form');
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    const submitBtn = document.getElementById('submitBtn');
     
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
             const inputs = form.querySelectorAll('input, textarea');
             let isValid = true;
             
+            // Validate all fields
             inputs.forEach(input => {
                 if (!input.value.trim()) {
                     isValid = false;
@@ -129,10 +134,74 @@ function initFormValidation() {
             });
             
             if (!isValid) {
-                e.preventDefault();
-                alert('Please fill in all required fields.');
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            const originalText = submitBtn.querySelector('span').textContent;
+            submitBtn.querySelector('span').textContent = 'Sending...';
+            
+            try {
+                // Prepare form data for Web3Forms
+                const formData = {
+                    access_key: '90d91c26-da0a-4af9-a51b-b8fca9ff6dba',
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value,
+                    from_name: document.getElementById('name').value
+                };
+                
+                // Send email using Web3Forms
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    showMessage('Message sent successfully! I will get back to you soon.', 'success');
+                    form.reset();
+                } else {
+                    throw new Error(result.message || 'Failed to send message');
+                }
+            } catch (error) {
+                console.error('Form Error:', error);
+                showMessage('Failed to send message. Please try again or contact me directly at laurenzchristiancelestino@gmail.com', 'error');
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.querySelector('span').textContent = originalText;
             }
         });
+    }
+}
+
+// Show form message
+function showMessage(message, type) {
+    const formMessage = document.getElementById('formMessage');
+    if (formMessage) {
+        formMessage.style.display = 'block';
+        formMessage.textContent = message;
+        formMessage.style.backgroundColor = type === 'success' 
+            ? 'rgba(0, 229, 255, 0.1)' 
+            : 'rgba(236, 72, 153, 0.1)';
+        formMessage.style.color = type === 'success' 
+            ? '#00e5ff' 
+            : '#ec4899';
+        formMessage.style.border = `1px solid ${type === 'success' ? '#00e5ff' : '#ec4899'}`;
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
     }
 }
 

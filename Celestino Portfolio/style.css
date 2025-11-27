@@ -125,8 +125,135 @@ body {
 }
 
 .logo-icon {
-    color: var(--accent-cyan);
-    font-size: 1.25rem;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 52px;
+    height: 52px;
+    padding: 0 8px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-family: var(--font-display);
+    letter-spacing: -1px;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.2)) 
+            drop-shadow(0 0 8px rgba(168, 85, 247, 0.4))
+            drop-shadow(0 0 12px rgba(236, 72, 153, 0.3));
+    text-shadow: 
+        0 0 6px rgba(168, 85, 247, 0.5),
+        0 0 12px rgba(236, 72, 153, 0.4);
+    z-index: 1;
+}
+
+.logo-icon::before {
+    content: 'WENZO';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-family: var(--font-display);
+    letter-spacing: -1px;
+    padding: 0 8px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.02;
+    filter: blur(0.2px);
+    z-index: -1;
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+.logo-icon::after {
+    content: 'WENZO';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-family: var(--font-display);
+    letter-spacing: -1px;
+    padding: 0 8px;
+    color: transparent;
+    -webkit-text-stroke: 0.4px;
+    -webkit-text-stroke-color: rgba(168, 85, 247, 0.04);
+    z-index: -2;
+    opacity: 0.06;
+}
+
+.nav-logo:hover .logo-icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.3)) 
+            drop-shadow(0 0 12px rgba(168, 85, 247, 0.6))
+            drop-shadow(0 0 18px rgba(236, 72, 153, 0.5));
+    animation: gradientShift 2s ease infinite, textGlow 1.5s ease-in-out infinite;
+}
+
+.nav-logo:hover .logo-icon::before {
+    opacity: 0.03;
+    filter: blur(0.25px);
+    animation: textPulse 1s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.3)) 
+                drop-shadow(0 0 12px rgba(168, 85, 247, 0.6))
+                drop-shadow(0 0 18px rgba(236, 72, 153, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4)) 
+                drop-shadow(0 0 16px rgba(168, 85, 247, 0.8))
+                drop-shadow(0 0 24px rgba(236, 72, 153, 0.7));
+    }
+}
+
+@keyframes gradientRotate {
+    0% {
+        background: linear-gradient(135deg, #00e5ff 0%, #a855f7 50%, #ec4899 100%);
+    }
+    33% {
+        background: linear-gradient(225deg, #a855f7 0%, #ec4899 50%, #00e5ff 100%);
+    }
+    66% {
+        background: linear-gradient(315deg, #ec4899 0%, #00e5ff 50%, #a855f7 100%);
+    }
+    100% {
+        background: linear-gradient(135deg, #00e5ff 0%, #a855f7 50%, #ec4899 100%);
+    }
 }
 
 .nav-menu {
@@ -465,6 +592,18 @@ body {
     animation-delay: 1.5s;
 }
 
+.card-3 {
+    top: 50%;
+    right: -20%;
+    animation-delay: 3s;
+}
+
+.card-4 {
+    bottom: 40%;
+    left: -15%;
+    animation-delay: 4.5s;
+}
+
 @keyframes floatCard {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
@@ -762,7 +901,7 @@ section {
 .company-header {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.25rem;
     padding: 2rem;
     background: var(--gradient-subtle);
     border-bottom: var(--border-subtle);
@@ -770,24 +909,39 @@ section {
 }
 
 .company-logo {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-glass);
-    border: var(--border-subtle);
-    border-radius: 16px;
-    font-size: 2rem;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    overflow: visible;
+    flex-shrink: 0;
+    margin-right: 0;
+}
+
+.company-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
 }
 
 .company-info h3 {
     font-size: 1.5rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1rem;
+    margin-top: 0;
 }
 
 .company-type {
     color: var(--text-muted);
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .internship-duration {
@@ -936,6 +1090,170 @@ section {
     justify-content: center;
     font-size: 4rem;
     background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+}
+
+.kitchencloud-placeholder {
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 183, 77, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 224, 178, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 204, 188, 0.06) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(255, 183, 77, 0.05) 0%, rgba(255, 224, 178, 0.05) 50%, rgba(255, 204, 188, 0.05) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-food {
+    position: absolute;
+    font-size: 1.8rem;
+    opacity: 0.25;
+    z-index: 0;
+    animation: floatFoodScattered 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.food-1 { top: 3%; left: 7%; animation-delay: 0s; }
+.food-2 { top: 11%; right: 4%; animation-delay: 0.5s; }
+.food-3 { top: 17%; left: 29%; animation-delay: 1s; }
+.food-4 { top: 8%; right: 24%; animation-delay: 1.5s; }
+.food-5 { top: 26%; left: 3%; animation-delay: 2s; }
+.food-6 { top: 22%; right: 14%; animation-delay: 2.5s; }
+.food-7 { top: 39%; left: 18%; animation-delay: 3s; }
+.food-8 { top: 34%; right: 6%; animation-delay: 3.5s; }
+.food-9 { top: 51%; left: 32%; animation-delay: 4s; }
+.food-10 { top: 47%; right: 19%; animation-delay: 4.5s; }
+.food-11 { top: 5%; left: 36%; animation-delay: 0.3s; }
+.food-12 { top: 14%; right: 31%; animation-delay: 0.8s; }
+.food-13 { top: 29%; left: 24%; animation-delay: 1.3s; }
+.food-14 { top: 43%; right: 27%; animation-delay: 1.8s; }
+.food-15 { top: 57%; left: 11%; animation-delay: 2.3s; }
+.food-16 { top: 61%; right: 16%; animation-delay: 2.8s; }
+.food-17 { top: 69%; left: 21%; animation-delay: 0.2s; }
+.food-18 { top: 74%; right: 8%; animation-delay: 0.7s; }
+.food-19 { top: 81%; left: 26%; animation-delay: 1.2s; }
+.food-20 { top: 86%; right: 13%; animation-delay: 1.7s; }
+
+@keyframes floatFood {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.15;
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+        opacity: 0.2;
+    }
+}
+
+@keyframes floatFoodScattered {
+    0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        opacity: 0.25;
+    }
+    25% {
+        transform: translateY(-12px) translateX(8px) rotate(8deg) scale(1.1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-18px) translateX(-6px) rotate(-6deg) scale(0.95);
+        opacity: 0.22;
+    }
+    75% {
+        transform: translateY(-8px) translateX(10px) rotate(5deg) scale(1.05);
+        opacity: 0.28;
+    }
+}
+
+.kitchencloud-logo {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 900;
+    font-family: var(--font-display);
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 25%, #fbbf24 50%, #f97316 75%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: foodGradientShift 5s ease infinite;
+    filter: drop-shadow(0 0 4px rgba(217, 119, 6, 0.3))
+            drop-shadow(0 0 6px rgba(245, 158, 11, 0.25));
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    line-height: 1.1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    word-break: break-word;
+}
+
+.kitchencloud-logo::before {
+    content: '👨‍🍳 🍴 🔪 🥄';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    opacity: 0.2;
+    animation: floatFood 8s ease-in-out infinite;
+    z-index: -1;
+    white-space: nowrap;
+}
+
+.kitchencloud-logo::after {
+    content: '🍽️ 🥘 🍲 🍜';
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    opacity: 0.2;
+    animation: floatFood 9s ease-in-out infinite reverse;
+    z-index: -1;
+    white-space: nowrap;
+}
+
+.food-icon-left,
+.food-icon-right {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    animation: bounceFood 2s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.food-icon-right {
+    animation-delay: 0.5s;
+}
+
+@keyframes bounceFood {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-5px) scale(1.1);
+    }
+}
+
+@keyframes foodGradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .work-overlay {
@@ -1458,6 +1776,12 @@ section {
     .company-header {
         flex-direction: column;
         text-align: center;
+    }
+    
+    .company-logo {
+        width: 90px;
+        height: 55px;
+        margin: 0 auto;
     }
     
     .internship-duration {
