@@ -12,3 +12,10 @@ C:\Users\laure\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfoli
 C:\Users\laure\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\obj\Debug\CelestinoPortfolio.csproj.CoreCompileInputs.cache
 C:\Users\laure\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\obj\Debug\CelestinoPortfolio.dll
 C:\Users\laure\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\obj\Debug\CelestinoPortfolio.pdb
+C:\Users\user\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\bin\Debug\CelestinoPortfolio.dll.config
+C:\Users\user\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\bin\Debug\CelestinoPortfolio.dll
+C:\Users\user\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\bin\Debug\CelestinoPortfolio.pdb
+C:\Users\user\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\obj\Debug\CelestinoPortfolio.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\obj\Debug\CelestinoPortfolio.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\obj\Debug\CelestinoPortfolio.dll
+C:\Users\user\source\repos\WenzoCelestino\CelestinoPortfolio\Celestino Portfolio\obj\Debug\CelestinoPortfolio.pdb
